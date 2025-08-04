@@ -11,70 +11,48 @@
         box-sizing: border-box;
       }
 
-      html,
       body {
-        height: 100%;
-        width: 100%;
-        overflow: hidden;
-        background-color: #000; /* Fallback color */
-      }
-
-      .video-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
+        background-color: #000;
         display: flex;
         justify-content: center;
         align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .video-container {
+        /* Original video dimensions: 720×896 (aspect ratio ~0.8) */
+        width: 720px;
+        height: 896px;
+        max-width: 100%;
+        max-height: 100%;
       }
 
       video {
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        
-        /* Center the video */
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        
-        /* For ultra-wide screens */
-        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Preserves original dimensions */
       }
 
-      /* For portrait mode on mobile devices */
-      @media (orientation: portrait) {
-        video {
+      /* For smaller screens */
+      @media (max-width: 720px) {
+        .video-container {
           width: 100%;
-          height: auto;
+          height: calc(100vw * (896/720)); /* Maintain aspect ratio */
         }
       }
 
-      /* For landscape mode */
-      @media (orientation: landscape) {
-        video {
-          width: auto;
-          height: 100%;
-        }
-      }
-
-      /* For very small devices */
-      @media (max-width: 400px) {
-        video {
-          width: 100%;
-          height: auto;
+      @media (max-height: 896px) {
+        .video-container {
+          height: 100vh;
+          width: calc(100vh * (720/896)); /* Maintain aspect ratio */
         }
       }
     </style>
   </head>
   <body>
     <div class="video-container">
-      <video autoplay muted loop playsinline>
+      <video autoplay muted loop playsinline controls>
         <source src="ganesh mahotsav video.mp4" type="video/mp4" />
         Your browser does not support HTML5 video.
       </video>
