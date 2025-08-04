@@ -16,26 +16,55 @@
         height: 100%;
         width: 100%;
         overflow: hidden;
+        background-color: #000; /* Fallback color */
       }
 
-      video {
+      .video-container {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        z-index: -1;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
-      @media (max-aspect-ratio: 16/9) {
+      video {
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        
+        /* Center the video */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        
+        /* For ultra-wide screens */
+        object-fit: cover;
+      }
+
+      /* For portrait mode on mobile devices */
+      @media (orientation: portrait) {
         video {
-          height: 100%;
-          width: auto;
+          width: 100%;
+          height: auto;
         }
       }
 
-      @media (min-aspect-ratio: 16/9) {
+      /* For landscape mode */
+      @media (orientation: landscape) {
+        video {
+          width: auto;
+          height: 100%;
+        }
+      }
+
+      /* For very small devices */
+      @media (max-width: 400px) {
         video {
           width: 100%;
           height: auto;
@@ -44,9 +73,11 @@
     </style>
   </head>
   <body>
-    <video autoplay muted loop playsinline>
-      <source src="ganesh mahotsav video.mp4" type="video/mp4" />
-      Your browser does not support HTML5 video.
-    </video>
+    <div class="video-container">
+      <video autoplay muted loop playsinline>
+        <source src="ganesh mahotsav video.mp4" type="video/mp4" />
+        Your browser does not support HTML5 video.
+      </video>
+    </div>
   </body>
 </html>
