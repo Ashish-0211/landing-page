@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ganesh Mahotsav 2025</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      video {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+      }
+
+      @media (max-aspect-ratio: 16/9) {
+        video {
+          height: 100%;
+          width: auto;
+        }
+      }
+
+      @media (min-aspect-ratio: 16/9) {
+        video {
+          width: 100%;
+          height: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <video autoplay muted loop playsinline>
+      <source src="ganesh mahotsav video.mp4" type="video/mp4" />
+      Your browser does not support HTML5 video.
+    </video>
+  </body>
+</html>
